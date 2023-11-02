@@ -1,8 +1,6 @@
-package pro.sky.Employes.Controller;
+package pro.sky.Employes;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pro.sky.Employes.Exceptions.EmployeeAlreadyAddedException;
 import pro.sky.Employes.Exceptions.EmployeeNotFoundException;
 import pro.sky.Employes.Exceptions.EmployeeStorageIsFullException;
@@ -11,6 +9,7 @@ import pro.sky.Employes.Service.Employees;
 
 import java.util.List;
 
+@RequestMapping("employee")
 @RestController
 public class Controller {
 
