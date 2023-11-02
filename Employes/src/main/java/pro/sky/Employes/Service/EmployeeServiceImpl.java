@@ -6,6 +6,7 @@ import pro.sky.Employes.Exceptions.EmployeeNotFoundException;
 import pro.sky.Employes.Exceptions.EmployeeStorageIsFullException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -65,6 +66,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public List<Employees> getInfo() {
-        return workers;
+        return new ArrayList<>(workers);
     }
 }

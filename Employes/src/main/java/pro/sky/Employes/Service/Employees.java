@@ -24,7 +24,7 @@ public class Employees {
     }
 
     public String toString() {
-        return "\nИмя - " + getFirstName() + "\nФамилия - " + getLastName();
+        return "\nИмя - " + getFirstName() + "\nФамилия - " + getLastName() + "\n";
     }
 
     @Override

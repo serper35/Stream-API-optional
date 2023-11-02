@@ -22,12 +22,7 @@ public class Controller {
 
     @GetMapping(path = "/add")
     public String add(@RequestParam("firstName") String name, @RequestParam("lastName") String lastname) {
-        try {
             return employeeService.addEmployee(name, lastname);
-        } catch (EmployeeAlreadyAddedException | EmployeeStorageIsFullException exception) {
-            exception.printStackTrace();
-        }
-        return "Ошибка добавления.";
     }
 
     @GetMapping("/getInfo")
@@ -37,21 +32,11 @@ public class Controller {
 
     @GetMapping("remove")
     public String remove(@RequestParam("firstName") String name, @RequestParam("lastName") String lastname) {
-        try {
             return employeeService.removeEmployee(name, lastname);
-        } catch (EmployeeNotFoundException e) {
-            e.printStackTrace();
-        }
-        return "Сотрудник не найден.";
     }
 
     @GetMapping("find")
     public String find(@RequestParam("firstName") String name, @RequestParam("lastName") String lastname) {
-        try {
             return employeeService.findEmployee(name, lastname);
-        } catch (EmployeeNotFoundException e) {
-            e.printStackTrace();
-        }
-        return "Сотрудник не найден.";
     }
 }
