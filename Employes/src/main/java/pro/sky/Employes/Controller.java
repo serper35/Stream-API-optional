@@ -1,9 +1,6 @@
 package pro.sky.Employes;
 
 import org.springframework.web.bind.annotation.*;
-import pro.sky.Employes.Exceptions.EmployeeAlreadyAddedException;
-import pro.sky.Employes.Exceptions.EmployeeNotFoundException;
-import pro.sky.Employes.Exceptions.EmployeeStorageIsFullException;
 import pro.sky.Employes.Service.EmployeeService;
 import pro.sky.Employes.Service.Employees;
 
