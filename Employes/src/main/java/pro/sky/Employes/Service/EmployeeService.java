@@ -2,6 +2,7 @@ package pro.sky.Employes.Service;
 
 
 import java.util.List;
+import java.util.Map;
 
 public interface EmployeeService {
 
@@ -9,5 +10,5 @@ public interface EmployeeService {
     public String removeEmployee(String name, String lastName);
     public String findEmployee(String name, String lastName);
 
-    public List<Employees> getInfo();
+    public Map<String, Employees> getInfo();
 }

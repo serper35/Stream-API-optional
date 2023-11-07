@@ -5,21 +5,25 @@ import pro.sky.Employes.Exceptions.EmployeeAlreadyAddedException;
 import pro.sky.Employes.Exceptions.EmployeeNotFoundException;
 import pro.sky.Employes.Exceptions.EmployeeStorageIsFullException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private static final int workerSize = 10;
+    private static final int WORKER_SIZE = 10;
 
-    List<Employees> workers = new ArrayList<>(List.of(
+    Map<String, Employees> workers = new HashMap<>(Map.of(
+            "VladVolkov",
             new Employees("Vlad", "Volkov"),
+            "EgorGolovanov",
             new Employees("Egor", "Golovanov"),
+            "FrankLampard",
             new Employees("Frank", "Lampard"),
+            "JohnTerry",
             new Employees("John", "Terry"),
+            "PetrChech",
             new Employees("Petr", "Chech"),
+            "DidierDrogba",
             new Employees("Didier", "Drogba")
     ));
 
@@ -27,15 +31,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public String addEmployee(String name, String lastName) {
         Employees employees = new Employees(name, lastName);
 
-        for (int i = 0; i < workers.size(); i++) {
-            if (employees.equals(workers.get(i))) {
-                throw new EmployeeAlreadyAddedException("Сотрудник уже есть в базе данных.");
-            }
+        if (workers.containsKey(name + lastName)) {
+            throw new EmployeeAlreadyAddedException("Сотрудник уже есть в базе данных.");
         }
 
-        if (workers.size() < workerSize) {
-            workers.add(employees);
-            return "Сотрудник " + workers.get(workers.size() - 1) + " добавлен.";
+        if (workers.size() < WORKER_SIZE) {
+            workers.put(name + lastName, employees);
+            return "Сотрудник " + employees + " добавлен.";
         } else {
             throw new EmployeeStorageIsFullException("База данных переполнена.");
         }
@@ -45,27 +47,26 @@ public class EmployeeServiceImpl implements EmployeeService {
     public String removeEmployee(String name, String lastName) {
         Employees test = new Employees(name, lastName);
 
-        for (int i = 0; i < workers.size(); i++) {
-            if (workers.get(i).equals(test)) {
-                workers.remove(i);
-                return "Сотрудник " + test + " удален.";
-            }
+        if (workers.containsKey(name + lastName)) {
+            workers.remove(name + lastName);
+            return "Сотрудник " + test + " удален.";
         }
+
         throw new EmployeeNotFoundException("Сотрудник не найден.");
     }
 
     @Override
     public String findEmployee(String name, String lastName) {
         Employees test = new Employees(name, lastName);
-        for (int i = 0; i < workers.size(); i++) {
-            if (workers.get(i).equals(test)) {
-                return "Сотрудник " + workers.get(i) + " найден.";
-            }
+
+        if (workers.containsKey(name + lastName)) {
+            return "Сотрудник " + test + " найден.";
         }
+
         throw new EmployeeNotFoundException("Сотрудник не найден.");
     }
 
-    public List<Employees> getInfo() {
-        return new ArrayList<>(workers);
+    public Map<String, Employees> getInfo() {
+        return new HashMap<>(workers);
     }
 }

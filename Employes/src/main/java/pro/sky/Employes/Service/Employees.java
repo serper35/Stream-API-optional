@@ -23,8 +23,16 @@ public class Employees {
         return lastName;
     }
 
+//    public String toString() {
+//        return "\nИмя - " + getFirstName() + "\nФамилия - " + getLastName() + "\n";
+//    }
+
+
+    @Override
     public String toString() {
-        return "\nИмя - " + getFirstName() + "\nФамилия - " + getLastName() + "\n";
+        return "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 
     @Override

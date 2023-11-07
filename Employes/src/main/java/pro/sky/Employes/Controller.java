@@ -5,6 +5,7 @@ import pro.sky.Employes.Service.EmployeeService;
 import pro.sky.Employes.Service.Employees;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("employee")
 @RestController
@@ -23,7 +24,7 @@ public class Controller {
     }
 
     @GetMapping("/getInfo")
-    public List<Employees> getInfo() {
+    public Map<String, Employees> getInfo() {
         return employeeService.getInfo();
     }
 
