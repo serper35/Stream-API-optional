@@ -1,6 +1,5 @@
 package pro.sky.Employes.Controllers;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +10,7 @@ import pro.sky.Employes.Service.Employees;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("departments")
+@RequestMapping("/departments")
 @RestController
 public class ControllerDepartments {
     private final DepartmentService departmentService;
@@ -20,22 +19,22 @@ public class ControllerDepartments {
         this.departmentService = departmentService;
     }
 
-    @GetMapping("max-salary")
+    @GetMapping("/max-salary")
     public Employees maxSalary(@RequestParam("departmentId") int id) {
-        return departmentService.maxSalary(id);
+        return departmentService.maxSalaryEmployee(id);
     }
 
-    @GetMapping("min-salary")
+    @GetMapping("/min-salary")
     public Employees minSalary(@RequestParam("departmentId") int id) {
-        return departmentService.minSalary(id);
+        return departmentService.minSalaryEmployee(id);
     }
 
-    @GetMapping("allByDep")
+    @GetMapping("/allByDep")
     public List<Employees> empByDep(@RequestParam("departmentId") int id){
         return departmentService.employeesByDep(id);
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public Map<Integer,List<Employees>> allEmp(){
         return departmentService.allEmployees();
     }

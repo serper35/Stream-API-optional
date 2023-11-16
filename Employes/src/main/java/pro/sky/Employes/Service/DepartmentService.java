@@ -5,8 +5,8 @@ import java.util.Map;
 
 public interface DepartmentService {
 
-    Employees minSalary(int dep);
-    Employees maxSalary(int dep);
+    Employees minSalaryEmployee(int dep);
+    Employees maxSalaryEmployee(int dep);
 
     Map<Integer,List<Employees>> allEmployees();
     List<Employees> employeesByDep(int dep);
