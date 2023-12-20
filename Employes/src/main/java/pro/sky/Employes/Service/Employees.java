@@ -6,12 +6,16 @@ public class Employees {
 
     private String firstName;
     private String lastName;
+    private int department;
+    private double salary;
 
 
-    public Employees(String firstName, String lastName) {
+
+    public Employees(String firstName, String lastName, int department, double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
-
+        this.department = department;
+        this.salary = salary;
     }
 
     public String getFirstName() {
@@ -27,14 +31,6 @@ public class Employees {
 //        return "\nИмя - " + getFirstName() + "\nФамилия - " + getLastName() + "\n";
 //    }
 
-
-    @Override
-    public String toString() {
-        return "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -46,5 +42,23 @@ public class Employees {
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", department=" + department +
+                ", salary=" + salary +
+                '}';
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public double getSalary() {
+        return salary;
     }
 }

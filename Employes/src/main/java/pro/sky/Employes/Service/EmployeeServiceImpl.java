@@ -14,22 +14,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     Map<String, Employees> workers = new HashMap<>(Map.of(
             "VladVolkov",
-            new Employees("Vlad", "Volkov"),
+            new Employees("Vlad", "Volkov", 1, 100000),
             "EgorGolovanov",
-            new Employees("Egor", "Golovanov"),
+            new Employees("Egor", "Golovanov", 2, 50000),
             "FrankLampard",
-            new Employees("Frank", "Lampard"),
+            new Employees("Frank", "Lampard", 1, 60000),
             "JohnTerry",
-            new Employees("John", "Terry"),
+            new Employees("John", "Terry", 2, 70000),
             "PetrChech",
-            new Employees("Petr", "Chech"),
+            new Employees("Petr", "Chech", 1, 80000),
             "DidierDrogba",
-            new Employees("Didier", "Drogba")
+            new Employees("Didier", "Drogba", 2, 90000)
     ));
 
     @Override
-    public String addEmployee(String name, String lastName) {
-        Employees employees = new Employees(name, lastName);
+    public String addEmployee(String name, String lastName, int department, double salary) {
+        Employees employees = new Employees(name, lastName, department, salary);
 
         if (workers.containsKey(name + lastName)) {
             throw new EmployeeAlreadyAddedException("Сотрудник уже есть в базе данных.");
@@ -45,11 +45,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public String removeEmployee(String name, String lastName) {
-        Employees test = new Employees(name, lastName);
 
         if (workers.containsKey(name + lastName)) {
             workers.remove(name + lastName);
-            return "Сотрудник " + test + " удален.";
+            return "Сотрудник " + name + " " + lastName + " удален.";
         }
 
         throw new EmployeeNotFoundException("Сотрудник не найден.");
@@ -57,16 +56,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public String findEmployee(String name, String lastName) {
-        Employees test = new Employees(name, lastName);
 
         if (workers.containsKey(name + lastName)) {
-            return "Сотрудник " + test + " найден.";
+            return "Сотрудник " + name + " " + lastName  + " найден.";
         }
 
         throw new EmployeeNotFoundException("Сотрудник не найден.");
     }
 
     public Map<String, Employees> getInfo() {
-        return new HashMap<>(workers);
+        return Collections.unmodifiableMap(workers);
     }
 }
